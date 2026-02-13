@@ -13,8 +13,8 @@ add3 int1 int2 int3 =
     int1 + int2 + int3
 
 
-calcTest : Int -> Int -> (Int -> Int -> Int) -> Int
-calcTest int1 int2 operator =
+calc : Int -> Int -> (Int -> Int -> Int) -> Int
+calc int1 int2 operator =
     operator int1 int2
 
 
