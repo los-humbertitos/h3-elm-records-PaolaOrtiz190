@@ -18,16 +18,30 @@ calc int1 int2 operator =
     operator int1 int2
 
 
+
+-- LANGUAGES
+
+
 language : List { name : String, releaseYear : Int, currentVersion : String }
 language =
     [ { name = "elm", releaseYear = 2012, currentVersion = "0.19.1" }
-    , { name = "javascrip", releaseYear = 1995, currentVersion = "ECMAScrip 2025" }
+    , { name = "javascript", releaseYear = 1995, currentVersion = "ECMAScript 2025" }
     ]
 
 
-laguageName : List { name : String, releaseYear : Int, currentVersion : String } -> List String
-laguageName inData =
+
+-- ✅ NOMBRE CORREGIDO
+
+
+languageNames :
+    List { name : String, releaseYear : Int, currentVersion : String }
+    -> List String
+languageNames inData =
     List.map .name inData
+
+
+
+-- USERS
 
 
 type alias User =
@@ -38,10 +52,12 @@ type alias User =
 
 users : List User
 users =
-    [ { name = " Paola"
+    [ { name = "Paola"
       , uType = "Student"
       }
-    , { name = "Mit", uType = "Teacher" }
+    , { name = "Mit"
+      , uType = "Teacher"
+      }
     ]
 
 
@@ -56,6 +72,10 @@ onlyStudents userList =
                 ""
         )
         userList
+
+
+
+-- VIDEOGAMES
 
 
 type alias Videogame =
@@ -75,7 +95,7 @@ videogames =
       , downloads = 12
       , genres = [ "Action", "Shooter" ]
       }
-    , { title = "Ocaring of time"
+    , { title = "Ocarina of Time"
       , releaseYear = 2022
       , available = False
       , downloads = 19
@@ -87,6 +107,10 @@ videogames =
 getVideogameGenres : List Videogame -> List (List String)
 getVideogameGenres list =
     List.map .genres list
+
+
+
+-- COMPUTER
 
 
 type alias Computer =
@@ -109,14 +133,11 @@ myLaptop =
 main : Html.Html msg
 main =
     Html.div []
-        [ Html.h1 []
-            [ Html.text "My laptop" ]
-        , Html.div []
-            [ Html.ul []
-                [ Html.li [] [ Html.text ("Ram :" ++ .ram myLaptop) ]
-                , Html.li [] [ Html.text ("Modelo :" ++ .model myLaptop) ]
-                , Html.li [] [ Html.text ("Marca : " ++ .brand myLaptop) ]
-                , Html.li [] [ Html.text ("Pulgadas : " ++ .screenSize myLaptop) ]
-                ]
+        [ Html.h1 [] [ Html.text "My laptop" ]
+        , Html.ul []
+            [ Html.li [] [ Html.text ("Ram: " ++ myLaptop.ram) ]
+            , Html.li [] [ Html.text ("Modelo: " ++ myLaptop.model) ]
+            , Html.li [] [ Html.text ("Marca: " ++ myLaptop.brand) ]
+            , Html.li [] [ Html.text ("Pulgadas: " ++ myLaptop.screenSize) ]
             ]
         ]
