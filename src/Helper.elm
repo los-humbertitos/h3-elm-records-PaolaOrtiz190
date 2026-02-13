@@ -13,35 +13,21 @@ add3 int1 int2 int3 =
     int1 + int2 + int3
 
 
-calc : Int -> Int -> (Int -> Int -> Int) -> Int
-calc int1 int2 operator =
+calcTest : Int -> Int -> (Int -> Int -> Int) -> Int
+calcTest int1 int2 operator =
     operator int1 int2
 
 
-
--- LANGUAGES
-
-
-language : List { name : String, releaseYear : Int, currentVersion : String }
-language =
+languageFuzzer : List { name : String, releaseYear : Int, currentVersion : String }
+languageFuzzer =
     [ { name = "elm", releaseYear = 2012, currentVersion = "0.19.1" }
-    , { name = "javascript", releaseYear = 1995, currentVersion = "ECMAScript 2025" }
+    , { name = "javascrip", releaseYear = 1995, currentVersion = "ECMAScrip 2025" }
     ]
 
 
-
--- ✅ NOMBRE CORREGIDO
-
-
-languageNames :
-    List { name : String, releaseYear : Int, currentVersion : String }
-    -> List String
+languageNames : List { name : String, releaseYear : Int, currentVersion : String } -> List String
 languageNames inData =
     List.map .name inData
-
-
-
--- USERS
 
 
 type alias User =
@@ -52,12 +38,10 @@ type alias User =
 
 users : List User
 users =
-    [ { name = "Paola"
+    [ { name = " Paola"
       , uType = "Student"
       }
-    , { name = "Mit"
-      , uType = "Teacher"
-      }
+    , { name = "Mit", uType = "Teacher" }
     ]
 
 
@@ -72,10 +56,6 @@ onlyStudents userList =
                 ""
         )
         userList
-
-
-
--- VIDEOGAMES
 
 
 type alias Videogame =
@@ -95,7 +75,7 @@ videogames =
       , downloads = 12
       , genres = [ "Action", "Shooter" ]
       }
-    , { title = "Ocarina of Time"
+    , { title = "Ocaring of time"
       , releaseYear = 2022
       , available = False
       , downloads = 19
@@ -107,10 +87,6 @@ videogames =
 getVideogameGenres : List Videogame -> List (List String)
 getVideogameGenres list =
     List.map .genres list
-
-
-
--- COMPUTER
 
 
 type alias Computer =
@@ -133,11 +109,14 @@ myLaptop =
 main : Html.Html msg
 main =
     Html.div []
-        [ Html.h1 [] [ Html.text "My laptop" ]
-        , Html.ul []
-            [ Html.li [] [ Html.text ("Ram: " ++ myLaptop.ram) ]
-            , Html.li [] [ Html.text ("Modelo: " ++ myLaptop.model) ]
-            , Html.li [] [ Html.text ("Marca: " ++ myLaptop.brand) ]
-            , Html.li [] [ Html.text ("Pulgadas: " ++ myLaptop.screenSize) ]
+        [ Html.h1 []
+            [ Html.text "My laptop" ]
+        , Html.div []
+            [ Html.ul []
+                [ Html.li [] [ Html.text ("Ram :" ++ .ram myLaptop) ]
+                , Html.li [] [ Html.text ("Modelo :" ++ .model myLaptop) ]
+                , Html.li [] [ Html.text ("Marca : " ++ .brand myLaptop) ]
+                , Html.li [] [ Html.text ("Pulgadas : " ++ .screenSize myLaptop) ]
+                ]
             ]
         ]
